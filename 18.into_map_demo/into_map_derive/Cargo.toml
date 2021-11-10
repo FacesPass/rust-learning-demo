@@ -1,0 +1,15 @@
+[package]
+edition = "2018"
+name = "into_map_derive"
+version = "0.1.0"
+
+[lib]
+proc-macro = true
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+into_map = {path = "../into_map"}
+# quote 软件包是 syn 软件包的有益补充，它允许用户在其中的 quote！中生成 Rust 代码，还允许用户替换 syn 数据类型中的值
+quote = "0.6.10"
+# syn 软件包创建一个名为AST 的内存数据结构，它表示一段 Rust 代码
+syn = {version = "0.15.22", features = ["extra-traits"]}
