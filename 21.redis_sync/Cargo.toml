@@ -1,0 +1,10 @@
+[package]
+edition = "2018"
+name = "redis_sync"
+version = "0.1.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+lazy_static = "1.2.0" #将使用它来存储我们的内存数据库
+resp = {git = "https://github.com/creativcoder/resp"}#解析来自客户端的字节流
