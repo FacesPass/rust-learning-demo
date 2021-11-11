@@ -24,4 +24,5 @@
  - 20.使用slog包来进行日志记录处理的例子
  - 21.编写一个支持get和set的简易的同步版本redis服务器(存在BUG，仅供参考)
  - 22.编写一个支持get和set的简易的异步版本redis服务器(存在BUG，仅供参考)
- - 23.简易的实时markdown解码器，用Rust生成wasm给前端使用
+ - 23.简易的实时markdown解码器，用Rust生成WASM给前端使用
+ - 24.WASM和JS的性能比较
