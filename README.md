@@ -26,6 +26,10 @@
  - 22.编写一个支持get和set的简易的异步版本redis服务器(存在BUG，仅供参考)
  - 23.简易的实时markdown解码器，用Rust生成WASM给前端使用
  - 24.WASM和JS的性能比较
+ - 25.匹配数字的正则表达式
+ - 26.动态派发trait
+ - 27.实现加法运算符重载
+ - 28.实现Iterator trait
 
 ### 02.cook-book 练习例子
 
