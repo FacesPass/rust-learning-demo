@@ -82,6 +82,8 @@ impl<'a, T> Iterator for Iter<'a, T> {
 
     fn next(&mut self) -> Option<Self::Item> {
         self.next.map(|node| {
+            // 下面这俩玩意等价
+            // self.next = node.next.as_ref().map::<&Node<T>, _>(|node| node);
             self.next = node.next.as_deref();
             &node.elem
         })
@@ -93,6 +95,8 @@ impl<'a, T> Iterator for ItorMut<'a, T> {
 
     fn next(&mut self) -> Option<Self::Item> {
         self.next.take().map(|node| {
+            // 这俩玩意等价
+            // self.next = node.next.as_mut().map::<&mut Node<T>, _>(|node| &mut *node);
             self.next = node.next.as_deref_mut();
             &mut node.elem
         })
