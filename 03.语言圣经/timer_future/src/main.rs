@@ -8,7 +8,7 @@ use {
         future::Future,
         sync::mpsc::{sync_channel, Receiver, SyncSender},
         sync::{Arc, Mutex},
-        task::{Context, Poll},
+        task::Context,
         time::Duration,
     },
     timer_future::TimerFuture,
@@ -19,6 +19,7 @@ struct Excutor {
     ready_quene: Receiver<Arc<Task>>,
 }
 
+/// `Spawner`负责创建新的`Future`然后将它发送到任务通道中
 #[derive(Clone)]
 struct Spawner {
     task_sender: SyncSender<Arc<Task>>,

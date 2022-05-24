@@ -21,6 +21,23 @@ impl TreeNode {
     }
 }
 
+#[derive(Debug, PartialEq, Eq)]
+struct TreeNodeBox {
+    pub val: i32,
+    pub left: Option<Box<TreeNodeBox>>,
+    pub right: Option<Box<TreeNodeBox>>,
+}
+
+impl TreeNodeBox {
+    fn new(val: i32) -> Self {
+        TreeNodeBox {
+            val,
+            left: None,
+            right: None,
+        }
+    }
+}
+
 impl Solution {
     // 前序遍历递归实现
     pub fn preorder_traversal_recursion(root: Option<Rc<RefCell<TreeNode>>>) -> Vec<i32> {
@@ -243,9 +260,49 @@ impl Solution {
 
         max
     }
+
+    // 树的层序遍历
+    pub fn level_order(root: Option<Box<TreeNodeBox>>) -> Vec<Vec<i32>> {
+        if root.is_none() {
+            return vec![];
+        }
+
+        let mut quene: Vec<Box<TreeNodeBox>> = vec![root.unwrap()];
+        let mut res: Vec<Vec<i32>> = vec![];
+
+        while !quene.is_empty() {
+            let len = quene.len();
+            let mut level: Vec<i32> = vec![];
+
+            for _ in 0..len {
+                let node = quene.remove(0);
+                level.push(node.val);
+                if node.left.is_some() {
+                    quene.push(node.left.unwrap());
+                }
+                if node.right.is_some() {
+                    quene.push(node.right.unwrap());
+                }
+            }
+
+            res.push(level);
+        }
+
+        res
+    }
 }
 
 fn main() {
-    let solution = Solution::length_of_longest_substring(String::from("tmmzuxt"));
-    println!("len: {}", solution);
+    let solution = Solution::level_order(Some(Box::new(TreeNodeBox {
+        val: 3,
+        left: Some(Box::new(TreeNodeBox::new(9))),
+        right: Some(Box::new(TreeNodeBox {
+            val: 20,
+            left: Some(Box::new(TreeNodeBox::new(15))),
+            right: Some(Box::new(TreeNodeBox::new(7))),
+        })),
+    })));
+
+    println!("{:?}", solution);
+    // [[3], [9, 20], [15, 7]]
 }
