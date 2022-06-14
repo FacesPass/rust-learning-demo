@@ -80,6 +80,7 @@ async fn generate(
     let mut engine: Photon = data
         .try_into()
         .map_err(|_| StatusCode::INTERNAL_SERVER_ERROR)?;
+
     engine.apply(&spec.specs);
     let image = engine.generate(ImageOutputFormat::Jpeg(85));
     info!("Finished processing: image size {}", image.len());
